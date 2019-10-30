@@ -1,11 +1,8 @@
 services:
   msgbird:
     build:
-      repo:
+      repo: https://github.com/lalyos/msgbird
       branch: master
+    command: httpd -v -f -h /web
     ports:
     - 80/http
-    env:
-    - TITLE=Coffer break
-    - COLOR=lightgreen
-    - BODY=soon ...
