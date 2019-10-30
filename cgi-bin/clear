@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+cat << EOF
+Content-type: text/html
+
+mesg file is clear now ...
+
+<hr/>
+<a href="/">home</a>
+EOF
