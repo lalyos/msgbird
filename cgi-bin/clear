@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo '---' > /tmp/messages
 cat << EOF
 Content-type: text/html
 
