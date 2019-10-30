@@ -5,19 +5,29 @@ headers() {
 }
 
 process() {
-  env ${QUERY_STRING//&/ } bash -c 'httpd -d  $body'
+  ! [[ "$QUERY_STRING" ]] && return
+
+  env ${QUERY_STRING//&/ } bash -c 'httpd -d  $body' | tee -a /tmp/messages
+  echo '' >> /tmp/messages
 }
 
 cat << EOF
 Content-type: text/html
 
 <p><em>Hello World!</em></p>
-<pre>
 
+<pre>
 body: $(process)
 
 date: $(date)
 hostname: ${HOSTNAME}
-
 </pre>
+
+<hr/>
+Previous messages:
+<pre>
+$(tac /tmp/messages)
+</pre
+<hr/>
+<a href="/">home</a>
 EOF
