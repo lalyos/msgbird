@@ -1,0 +1,11 @@
+services:
+  msgbird:
+    build:
+      repo:
+      branch: master
+    ports:
+    - 80/http
+    env:
+    - TITLE=Coffer break
+    - COLOR=lightgreen
+    - BODY=soon ...

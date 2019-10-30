@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+headers() {
+  printenv | sort | grep 'HTTP_\|REQUEST_\|QUERY' | tee /dev/fd/2
+}
+
+process() {
+  env ${QUERY_STRING//&/ } bash -c 'httpd -d  $body'
+}
+
+cat << EOF
+Content-type: text/html
+
+<p><em>Hello World!</em></p>
+<pre>
+
+body: $(process)
+
+date: $(date)
+hostname: ${HOSTNAME}
+
+</pre>
+EOF
